@@ -4,7 +4,7 @@
 {% load static %}
 
 <head>
-    <title>SBTPro - dashboard</title>
+    <title>Shaadi.com - dashboard</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Admin template that can be used to build dashboards for CRM, CMS, etc." />
@@ -53,15 +53,15 @@
                                             </button>
                                         </div>
                                         {% endfor %}
-                                        <h1 class="mb-2">We Are SBT Professionals</h1>
+                                        <h1 class="mb-2">Welcome To Bacholiya Section</h1>
                                         <p>Welcome back, please login to your account.</p>
                                         <form action="{% url 'dashboard:login' %}" method="POST" class="mt-3 mt-sm-5">
                                             {% csrf_token %}
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label class="control-label">Phone*</label>
-                                                        <input type="text" name="phone" class="form-control" placeholder="phone" />
+                                                        <label class="control-label">Email*</label>
+                                                        <input type="text" name="email" class="form-control" placeholder="Email" />
                                                     </div>
                                                 </div>
                                                 <div class="col-12">

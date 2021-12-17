@@ -1,9 +1,9 @@
 from dashboard.forms import ContactForm
-from website.models import *
+
 
 from django.db import models
 from django_countries.fields import CountryField
-from phonenumber_field.modelfields import PhoneNumberField
+
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -80,70 +80,3 @@ BRANCH_TYPE_CHOICES = (
 
 
 # Create your models here.
-class Branch(models.Model):
-
-    user = models.OneToOneField(User,on_delete=models.CASCADE,null= True, blank=True)
-    branch_type = models.CharField(max_length=100,choices=BRANCH_TYPE_CHOICES,blank=True, null=True)
-    branch_name = models.CharField(max_length=20,default='')
-    Mobile_No = models.CharField(max_length=20,blank=True, null=True)
-    Mobile_No_2 = models.CharField(max_length=20,blank=True, null=True)
-    Address1 = models.CharField(max_length=100, default='')
-    Address2 = models.CharField(max_length=100, blank=True, null=True, default='')
-    city = models.CharField(max_length=100, default='')
-    state = models.CharField(max_length=100, choices=VALID_STATE_CHOICES, default='Please Select')
-    zipcode = models.IntegerField()
-    country = CountryField()
-    EmailID = models.EmailField(null=True, blank=True)
-    regsitration_date = models.DateTimeField(auto_now_add=True)
-    landline_no = models.CharField(max_length=15,null=True, blank=True)
-    Longitude = models.FloatField(null=True, blank=True)
-    Latitude = models.FloatField(null=True, blank=True)
-    extra_Info = models.TextField(max_length=200, blank=True, null=True)
-    Contact_Person = models.CharField(max_length=100, default='', blank=True, null=True)
-    branch_is_active = models.BooleanField(default=False)
-    Image = models.ImageField(upload_to="dashboard/images/branch", blank=True,null=True)
-    
-
-    def __str__(self):
-        return self.branch_name
-
-
-
-
-class Banner(models.Model):
-    banner_id = models.AutoField(primary_key=True)
-    banner_name = models.CharField(max_length=50,default='')
-    banner_img = models.ImageField(upload_to="dashboard/images/banner_1")
-
-    def __str__(self):
-        return self.banner_name
-
-
-class Banner2(models.Model):
-    banner_id = models.AutoField(primary_key=True)
-    banner_name = models.CharField(max_length=50,default='')
-    banner_img = models.ImageField(upload_to="dashboard/images/banner_2")
-
-    def __str__(self):
-        return self.banner_name
-    
-
-class BranchReport(models.Model):
-    branch = models.ForeignKey(Branch,on_delete=models.CASCADE)
-    submit_time = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=100)
-    report_detail = models.TextField(max_length=5000)
-
-
-    def __str__(self):
-        return str(self.branch) + ' branch submit report at ' + str(self.submit_time)
-
-class BranchContact(models.Model):
-    branch = models.ForeignKey(Branch,on_delete=models.CASCADE)
-    submit_time = models.DateTimeField(auto_now_add=True)
-    email = models.CharField(max_length=100)
-    desc = models.TextField(max_length=5000)
-
-
-    def __str__(self):
-        return str(self.branch) + ' contacts at ' + str(self.submit_time)
